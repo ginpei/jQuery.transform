@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<title>jQuery.transform()</title>
+		<style>
+			body {
+				font-family: serif;
+			}
+			.box {
+				background-color: #339090;
+				box-shadow: 5px 5px 10px rgba(0,0,0,.5);
+				color: #fff;
+				height: 200px;
+				margin: 50px;
+				width: 200px;
+
+				-ms-transition: -ms-transform .5s;
+				-moz-transition: -moz-transform .5s;
+				-o-transition: -o-transform .5s;
+				-webkit-transition: -webkit-transform .5s;
+				transition: transform .5s;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box1" class="box">Box#1</div>
+		<div id="box2" class="box">Box#2</div>
+		<div id="box3" class="box">Box#3<br />Click me!</div>
+		<script src="jquery.js"></script>
+		<script src="jquery.transform.js"></script>
+		<script>
+			jQuery(function($) {
+				$('#box2')
+					.transform('rotate', '10deg')
+					.transform('scale', '.8');
+
+				$('#box3').click(function(event) {
+					var $el = $(this);
+					var rotate = parseInt($el.transform('rotate'), 0) || 0;
+					rotate += 30;
+					$el.transform('rotate', rotate+'deg');
+
+					$el.transform('scale', '2');
+					setTimeout(function() {
+						$el.transform('scale', '');
+					}, 100);
+				});
+			});
+		</script>
+	</body>
+</html>
